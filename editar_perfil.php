@@ -128,33 +128,96 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['actualizar_imagen'])) 
             $image_error_message .= "Error: El tamaño del archivo excede el límite de 2MB.<br>";
         }
 
-        if (empty($image_error_message)) {
-            $nombre_archivo_unico = $nombre_archivo;
-            $ruta_destino = 'Imagenes/' . $nombre_archivo_unico;
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['actualizar_imagen'])) {
 
-            if (move_uploaded_file($ruta_temporal, $ruta_destino)) {
-                $sql_update_imagen = "UPDATE usuarios SET Imagen = ? WHERE ID = ?";
-                $stmt_update_imagen = $conn->prepare($sql_update_imagen);
-                $stmt_update_imagen->bind_param("si", $nombre_archivo_unico, $usuario_id);
-
-                if ($stmt_update_imagen->execute()) {
-                    $image_success_message = "Imagen de perfil actualizada correctamente.";
-                    header("Location: profile.php?mensaje=imagen_actualizada");
-                    exit();
-                } else {
-                    $image_error_message = "Error al actualizar el nombre del archivo en la base de datos: " . $stmt_update_imagen->error;
+            if (isset($_FILES['nueva_imagen']) && $_FILES['nueva_imagen']['error'] == UPLOAD_ERR_OK) {
+            
+                $nombre_archivo = $_FILES['nueva_imagen']['name'];
+            
+                $tipo_archivo = $_FILES['nueva_imagen']['type'];
+            
+                $tamano_archivo = $_FILES['nueva_imagen']['size'];
+            
+                $ruta_temporal = $_FILES['nueva_imagen']['tmp_name'];
+            
+                $extension = strtolower(pathinfo($nombre_archivo, PATHINFO_EXTENSION));
+            
+            
+            
+                $tipos_permitidos = ['image/jpeg', 'image/png', 'image/gif'];
+            
+                $tamano_maximo = 2 * 1024 * 1024;
+            
+            
+            
+                if (!in_array($tipo_archivo, $tipos_permitidos)) {
+            
+                    $image_error_message .= "Error: Solo se permiten archivos JPEG, PNG o GIF.<br>";
+            
                 }
-                $stmt_update_imagen->close();
+            
+            
+            
+                if ($tamano_archivo > $tamano_maximo) {
+            
+                    $image_error_message .= "Error: El tamaño del archivo excede el límite de 2MB.<br>";
+            
+                }
+            
+            
+            
+                if (empty($image_error_message)) {
+            
+                    $nombre_archivo_unico = $nombre_archivo;
+            
+                    $ruta_destino = 'Imagenes/' . $nombre_archivo_unico;
+            
+            
+            
+                    if (move_uploaded_file($ruta_temporal, $ruta_destino)) {
+            
+                        $sql_update_imagen = "UPDATE usuarios SET Imagen = ? WHERE ID = ?";
+            
+                        $stmt_update_imagen = $conn->prepare($sql_update_imagen);
+            
+                        $stmt_update_imagen->bind_param("si", $nombre_archivo_unico, $usuario_id);
+            
+                        if ($stmt_update_imagen->execute()) {
+            
+                            $image_success_message = "Imagen de perfil actualizada correctamente.";
+            
+                            header("Location: profile.php?mensaje=imagen_actualizada");
+            
+                            exit();
+            
+                        } else {
+            
+                        $image_error_message = "Error al actualizar el nombre del archivo en la base de datos: " . $stmt_update_imagen->error;
+            
+                    }
+            
+                    $stmt_update_imagen->close();
+            
+                    } else {
+            
+                        $image_error_message = "Error al mover el archivo al servidor.";
+            
+                    }
+            
+                }
+            
             } else {
-                $image_error_message = "Error al mover el archivo al servidor.";
+            
+                $image_error_message = "Error: No se ha seleccionado ningún archivo.";
+            
             }
+            
         }
-    } else {
-        $image_error_message = "Error: No se ha seleccionado ningún archivo.";
     }
 }
 
 $conn->close();
+
 ?>
 
 <!DOCTYPE html>
