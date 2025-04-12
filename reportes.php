@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reportes</title>
-  <link rel="stylesheet" href="Vistas/reportes.css">
+  <link rel="stylesheet" href="Vistas/Reports.css">
 </head>
 <body>
 
@@ -19,20 +19,24 @@
     </ul>
   </nav>
 
+  
   <div class="content">
     <h1>Bienvenido al apartado de Reportes</h1>
     <p>Este es tu panel de control. Aquí puedes ver la actividad.</p>
     
-    <!-- Ventana de Reportes -->
-    <div class="report-box">
-      <h2>Reportes</h2>
-      <div class="report-item">
-        <p><strong>Cantidad de Usuarios Registrados:</strong> <span id="user-count">5</span></p>
-      </div>
-      <div class="report-item">
-        <p><strong>Cantidad de Post Registrados:</strong> <span id="post-count">2</span></p>
+    <div class="reportes-container">
+      <!-- Ventana de Reportes -->
+      <div class="report-box">
+        <h2>Reportes</h2>
+        <div class="report-item">
+          <p><strong>Cantidad de Usuarios Registrados:</strong> <span id="user-count">5</span></p>
+        </div>
+        <div class="report-item">
+          <p><strong>Cantidad de Post Registrados:</strong> <span id="post-count">2</span></p>
+        </div>
       </div>
     </div>
+    
   </div>
 
   <script src="Controladores/script.js"></script>

@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuperar Contraseña</title>
-    <link rel="stylesheet" href="Vistas/styles.css">
+    <link rel="stylesheet" href="Vistas/Login.css">
 </head>
 <body>
-    <div class="container">
+    <div class="login-container">
         <div class="form-container">
             <h2>Recuperar Contraseña</h2>
             <form id="recoverForm">

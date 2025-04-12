@@ -12,6 +12,7 @@ body {
     padding-top: 60px; /* Espacio para la barra de navegación fija */
     padding-bottom: 20px; /* Espacio inferior */
   }
+  
   .login-container {
     background: rgb(222, 220, 220);
     padding: 40px 30px;
