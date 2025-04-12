@@ -1,0 +1,92 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: linear-gradient(to top, #621010, #f3d7d5); /* Añadido degradado de fondo */
+    height: 100vh; /* Añadido para ocupar toda la altura */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-container {
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con transparencia */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 80%; /* Ancho más pequeño para el perfil */
+    max-width: 600px; /* Ancho máximo */
+    text-align: center; /* Centrar el contenido */
+}
+
+
+.foto-perfil {
+    width: 150px; /* Tamaño fijo para la foto de perfil */
+    height: 150px;
+    border-radius: 50%; /* Hacerla circular */
+    overflow: hidden; /* Recortar la imagen si es más grande */
+    margin: 20px auto; /* Centrar horizontalmente */
+}
+
+.foto-perfil img {
+    width: 100%; /* La imagen ocupa todo el contenedor */
+    height: 100%;
+    object-fit: cover; /* Ajustar la imagen sin deformarla */
+}
+
+.profile-name {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.profile-birthday {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.edit-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #971614a9;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+
+.edit-btn:hover {
+    background-color: #3e0404;
+}
+
+.navbar {
+    background-color: #2a2020;
+    padding: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    position: fixed; /* Barra fija en la parte superior */
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar ul li {
+    margin: 0 30px;
+}
+
+.navbar ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 4px;
+    border-radius: 5px;
+}
+
+.navbar ul li a:hover {
+    background-color: #53121286;
+}
